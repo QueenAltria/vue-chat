@@ -1,0 +1,7 @@
+.el-button--small, .el-button--small.is-round{
+	padding: 5px 15px;
+}
+
+.el-collapse{
+	border:none;
+}
