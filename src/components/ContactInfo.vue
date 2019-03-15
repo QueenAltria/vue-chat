@@ -1,6 +1,9 @@
 <template>
 	<div>
-		<h1>a</h1>
+		<div>
+			
+			<img  class="info-img">
+		</div>
 
 	</div>
 </template>
@@ -19,4 +22,9 @@ export default {
 </script>
 
 <style lang="css" scoped>
+.info-img{
+	width: 100px;
+	height: 200px;
+	background-color: #66ccff;
+}
 </style>
