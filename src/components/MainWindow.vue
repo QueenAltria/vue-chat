@@ -161,8 +161,8 @@ export default {
 .left-div{
   background-color: white;
   box-sizing: border-box;
-  height: 100%;
-  overflow: auto;
+/*  height: 100%;
+  overflow: auto;*/
 }
 
 .left-div img{
@@ -172,7 +172,7 @@ export default {
 }
 
 .el-menu-vertical-do:not(.el-menu--collapse) {
-  width: 140px;
+  width: 160px;
   min-height: 100%;
 }
 
@@ -183,7 +183,7 @@ export default {
 }
 
 .left-div::-webkit-scrollbar {
-  background-color: rgba(0,0,0,0);
+  /*background-color: rgba(0,0,0,0);*/
 }
 
 

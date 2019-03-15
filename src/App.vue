@@ -13,6 +13,8 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  /*font-family: 'Roboto', sans-serif;*/
+  /*font-family: 'PingFangSC-Regular', sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -25,6 +27,8 @@ body{
   background-image:url(./assets/bg1.jpg) ;
   background-repeat: repeat;
   background-size: 100%;
+  min-width: 100%;
+  width: 100%;
 }
 a:hover {
   cursor: url(./assets/yinxian.png), auto;

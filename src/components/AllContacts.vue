@@ -33,7 +33,7 @@ export default {
 
 <style lang="css" scoped>
 .cm-div{
-  background-color: #F8F8F8;
+  background-color: #FFFFFF;
   width: 100%;
   display: flex;
 }
