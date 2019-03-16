@@ -1,5 +1,5 @@
 <template>
-	<h1>Calendar</h1>
+	<h1>Calendar Add</h1>
 </template>
 
 <script>
