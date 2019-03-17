@@ -55,7 +55,7 @@
 
   </div>
 </div>
-</div>
+
 </template>
 
 
@@ -182,9 +182,9 @@ export default {
   width: 100%;
 }
 
-.left-div::-webkit-scrollbar {
-  /*background-color: rgba(0,0,0,0);*/
-}
+/* .left-div::-webkit-scrollbar {
+  background-color: rgba(0,0,0,0);
+} */
 
 
 </style>

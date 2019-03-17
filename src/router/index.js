@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+import Login from '@/pages/Login'
 import MainWindow from '@/components/MainWindow'
 import Message from '@/components/CurrentMessage'
 import Contact from '@/components/AllContacts'
@@ -15,8 +16,13 @@ Vue.use(Router)
 
 export default new Router({
   routes: [
+		{
+			path: '/',
+      name: 'Login',
+      component: Login,
+		},
     {
-      path: '/',
+      path: '/MainWindow',
       name: 'MainWindow',
       component: MainWindow,
       redirect:'/Message',
