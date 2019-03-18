@@ -1,7 +1,12 @@
 <template>
   <div id="app">
     <div class="mark"/>
-    <router-view/>
+    <!-- leave-active-class="animated fadeInDown" 
+    enter-active-class="animated fadeOut"-->
+    <transition  
+      enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutLeft" mode="out-in">
+      <router-view/>
+    </transition>
   </div>
 </template>
 
@@ -32,7 +37,8 @@ a:hover {
 }
 
 .mark{
-  background-image: url(./assets/bg1.jpg);
+  /*background-image: url(./assets/bg1.jpg);*/
+  background: -webkit-linear-gradient(#fff 0%, #f2f7ff 100%);
   position: absolute;
   top: 0;
   left: 0;

@@ -1,41 +1,45 @@
 <template>
-<div class="app-wrapper-web">
-  <div class="container-div">
+<div class="app-wrapper-web" >
+  <div class="container-div" v-show="show">
     <div class="left-div">
-      <el-menu default-active="/Message" class="el-menu-vertical-do" :collapse="isCollapse" @select="selectMenu" unique-opened router>
-        <el-menu-item index="/User" class="mb-15">
+      <el-menu default-active="/MainWindow/Message" class="el-menu-vertical-do" :collapse="isCollapse" @select="selectMenu" unique-opened router>
+        <el-menu-item index="/MainWindow/User" class="mb-15">
           <img src="../../src/assets/head.jpg">
           <span slot="title">Silence</span>
         </el-menu-item>
-        <el-menu-item index="/Message">
+        <el-menu-item index="/MainWindow/ChatRoom">
+          <i class="iconfont icon-chat-room"></i>
+          <span slot="title">聊天室</span>
+        </el-menu-item>
+        <el-menu-item index="/MainWindow/Message">
           <i class="iconfont icon-message"></i>
           <span slot="title">Message</span>
         </el-menu-item>
-        <el-menu-item index="/Contact">
+        <el-menu-item index="/MainWindow/Contact">
           <i class="iconfont icon-contact"></i>
           <span slot="title">Contact</span>
         </el-menu-item>
-        <el-menu-item index="/Document">
+        <el-menu-item index="/MainWindow/Document">
           <i class="iconfont icon-document"></i>
           <span slot="title">Document</span>
         </el-menu-item>
-        <el-menu-item index="/Upcoming">
+        <el-menu-item index="/MainWindow/Upcoming">
           <i class="iconfont icon-upcoming"></i>
           <span slot="title">Upcoming</span>
         </el-menu-item>
-        <el-menu-item index="/Calendar">
+        <el-menu-item index="/MainWindow/Calendar">
           <i class="iconfont icon-calendar"></i>
           <span slot="title">Calendar</span>
         </el-menu-item>
-        <el-menu-item index="/Collection">
+        <el-menu-item index="/MainWindow/Collection">
           <i class="iconfont icon-collection"></i>
           <span slot="title">Collection</span>
         </el-menu-item>
-        <el-menu-item index="/Statistics">
+        <el-menu-item index="/MainWindow/Statistics">
           <i class="iconfont icon-statistics"></i>
           <span slot="title">Statistics</span>
         </el-menu-item>
-        <el-menu-item index="/Setting" class="setting">
+        <el-menu-item index="/MainWindow/Setting" class="setting">
           <i class="iconfont icon-setting"></i>
           <span slot="title">Setting</span>
         </el-menu-item>
@@ -51,8 +55,6 @@
       </div> -->
       
     </div>
-
-
   </div>
 </div>
 
@@ -76,6 +78,7 @@ export default {
       input:'',
       isCollapse:true,
       select:'1',
+      show:false
 
     }
   },
@@ -84,7 +87,7 @@ export default {
     selectMenu(index,indexPath){
       console.log(index)
       this.select=index
-      if(index=='/Message' || index=="/Contact"){
+      if(index=='/MainWindow/Message' || index=="/MainWindow/Contact"){
         this.isCollapse=true
       }else{
         this.isCollapse=false
@@ -123,7 +126,9 @@ export default {
     
   },
   mounted(){
+    console.log(this.$route.params.userName)
       //showTip()
+      this.show=true
   },
   components:{
     message,
@@ -141,14 +146,23 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style>
 
+.app-wrapper-web{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .container-div{
   display: flex;
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
+  top: 5%;
+ 
+  left: 7.5%;
   right: 0;
-  transform: scale(0.85,0.9);
+  /*transform: scale(0.85,0.9);*/
+  width: 85%;
+  height: 90%;
   box-shadow: -5px 5px 20px 0px rgba(0,0,0,0.1);
 }
 

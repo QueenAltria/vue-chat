@@ -10,7 +10,25 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+        '/': {
+            target: 'http://172.83.154.37:3000',
+            changeOrigin: true,
+            secure: false, 
+            // pathRewrite: {   // 重定向
+            // '^/admin': 'https://18sheng.71baomu.com:443'
+            // }  
+        },
+
+       // '/uploads':{
+       //      target: 'http://172.83.154.37:3000',
+       //      changeOrigin: true,
+       //      secure: false, 
+       //      pathRewrite: {
+       //          '^/uploads': 'http://172.83.154.37:3000/uploads'
+       //      }  
+       //  },       
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

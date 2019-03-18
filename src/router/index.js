@@ -11,64 +11,70 @@ import Collection from '@/components/Collection'
 import Statistics from '@/components/Statistics'
 import Setting from '@/components/Setting'
 import User from '@/components/User'
+import ChatRoom from '@/components/ChatRoom'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
-		{
-			path: '/',
+	{
+	  path: '/',
       name: 'Login',
       component: Login,
-		},
+	},
     {
       path: '/MainWindow',
       name: 'MainWindow',
       component: MainWindow,
-      redirect:'/Message',
+      redirect:'/MainWindow/Message',
       children:[
+      	{
+	      path: 'ChatRoom',
+	      name: 'ChatRoom',
+	      component: ChatRoom
+    	},
         {
-	      path: '/Message',
+	      path: 'Message',
 	      name: 'Message',
 	      component: Message
     	},
       	{
-	      path: '/Contact',
+	      path: 'Contact',
 	      name: 'Contact',
 	      component: Contact
     	},
     	{
-	      path: '/Document',
+	      path: 'Document',
 	      name: 'Document',
 	      component: Document
     	},
     	{
-	      path: '/Upcoming',
+	      path: 'Upcoming',
 	      name: 'Upcoming',
 	      component: Upcoming
     	},
     	{
-	      path: '/Calendar',
+	      path: 'Calendar',
 	      name: 'Calendar',
 	      component: Calendar
     	},
     	{
-	      path: '/Collection',
+	      path: 'Collection',
 	      name: 'Collection',
 	      component: Collection
     	},
     	{
-	      path: '/Statistics',
+	      path: 'Statistics',
 	      name: 'Statistics',
 	      component: Statistics
     	},
     	{
-	      path: '/Setting',
+	      path: 'Setting',
 	      name: 'Setting',
 	      component: Setting
     	},
     	{
-	      path: '/User',
+	      path: 'User',
 	      name: 'User',
 	      component: User
     	}

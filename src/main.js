@@ -9,6 +9,14 @@ import 'element-ui/lib/theme-chalk/index.css';
 import  "./assets/css/common.css"
 import  "./assets/css/color.css"
 import  "./assets/css/elementDiy.css"
+import axios from './api/http'
+// import axiosMethodOverride from 'axios-method-override'
+
+if (false) {
+    console = console || {};
+    console.log = function(){};
+}
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = false
 

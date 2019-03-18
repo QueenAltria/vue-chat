@@ -5,3 +5,7 @@
 .el-collapse{
 	border:none;
 }
+
+.el-input{
+	box-sizing: border-box;
+}
