@@ -1,8 +1,9 @@
 export const setUser = ({commit},user)=>{
-	console.log(user)
+	//console.log(user)
 	commit("userStatus",user)
 }
 
-export const setToken = ({commit},token)=>{
-	commit("userToken",token)
+export const ws = ({commit},socket)=>{
+	//console.log(socket)
+	commit("commitws",socket)
 }

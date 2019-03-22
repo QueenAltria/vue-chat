@@ -1,21 +1,15 @@
 <template>
   <div id="app">
-    <div class="mark"/>
-    <!-- leave-active-class="animated fadeInDown" 
-    enter-active-class="animated fadeOut"-->
-    <transition  
-      enter-active-class="animated fadeInRight" leave-active-class="animated fadeOutLeft" mode="out-in">
-      <router-view/>
-    </transition>
+    <div class="mark" />
+    <router-view />
   </div>
 </template>
-
 <script>
 export default {
   name: 'App'
 }
-</script>
 
+</script>
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -26,7 +20,7 @@ export default {
   color: #2c3e50;
 }
 
-body{
+body {
   /*cursor: url(./assets/huaji.png), auto;*/
   margin: 0;
   background-color: #F5F5F5;
@@ -36,7 +30,7 @@ a:hover {
   cursor: url(./assets/yinxian.png), auto;
 }
 
-.mark{
+.mark {
   /*background-image: url(./assets/bg1.jpg);*/
   background: -webkit-linear-gradient(#fff 0%, #f2f7ff 100%);
   position: absolute;
@@ -50,4 +44,5 @@ a:hover {
   opacity: 1;
   filter: blur(0px);
 }
+
 </style>

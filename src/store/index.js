@@ -1,87 +1,29 @@
 import Vue from 'vue'
 import vuex from 'vuex'
+import {mapState} from 'vuex'
 import * as actions from './actions'
 import * as getters from './getters'
 import * as mutations from './mutations'
+//监控state的值
+import createLogger from 'vuex/dist/logger'
 
 Vue.use(vuex);
 
-/**
-const state={
-	show:false,
-	count:0,
-	user_id:110,
-}
+const debug = process.env.NODE_ENV !== 'production'
 
-const getters={
-	getUser_id:(state)=>{
-		return state.user_id
-	},
-}
-
-const mutations={
-	increment(state){
-		state.count++
-	}
-}
-
-export default {
-	state,
-	getters,
-	mutations
-}
-**/
-
-// const store=new vuex.Store({
-// 	state:{
-// 		show:false,
-// 		count:0,
-// 		user_id:110,
-// 		todos:"tosos"
-// 	},
-// 	mutations:{
-// 		increment(state){
-// 			state.count++
-// 		}
-// 	},
-// 	getters:{
-// 		doneTodos: state => {
-//       		return state.todos.substring(0,state.count)
-//     	}
-// 	},
-// 	actions: {
-//     	increment (context) {
-//       		context.commit('increment')
-//     	},
-
-//     	increment2 ({ commit }) {
-//     		commit('increment')
-//   		}
-//   	}
-// })
+// mutations只能是同步操作
+// actions可以是异步操作
 const store=new vuex.Store({
 	state:{
 		currentUser:null,
 		isLogin:false,
-		token:"",
+		ws:null,
 	},
 	mutations,
 	getters,
-	actions
+	actions,
+	strict: debug,
+  	plugins: debug ? [createLogger()] : []
 })
 
 export default store
-
-/**
-export default new vuex.Store({
-	state:{
-		show:false,
-		count:0
-	},
-	mutations:{
-		increment(state){
-			state.count++
-		}
-	},
-})
-**/

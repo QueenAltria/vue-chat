@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/pages/Login'
+import store from '@/store/index'
 import MainWindow from '@/components/MainWindow'
 import Message from '@/components/CurrentMessage'
 import Contact from '@/components/AllContacts'
@@ -12,10 +13,11 @@ import Statistics from '@/components/Statistics'
 import Setting from '@/components/Setting'
 import User from '@/components/User'
 import ChatRoom from '@/components/ChatRoom'
+import storage from '@/utils/storage'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
 	{
 	  path: '/',
@@ -26,7 +28,7 @@ export default new Router({
       path: '/MainWindow',
       name: 'MainWindow',
       component: MainWindow,
-      redirect:'/MainWindow/Message',
+      redirect:'/MainWindow/ChatRoom',
       children:[
       	{
 	      path: 'ChatRoom',
@@ -80,6 +82,30 @@ export default new Router({
     	}
       ]
     },
-    
   ]
 })
+
+router.beforeEach((to, from, next) => {
+	var user=storage.fetch().currentUser
+	if(to.name=='Login'){
+		//console.log(store)
+		//已经登录
+		if(user){
+			next({
+				path:'/MainWindow/ChatRoom'
+			})
+		}else{
+			next()
+		}
+	}else{
+		if(!user){
+			next({
+				path:'/'
+			})
+		}else{
+			next()
+		}
+	}
+})
+
+export default router

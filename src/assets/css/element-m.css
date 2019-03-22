@@ -9,3 +9,11 @@
 .el-input{
 	box-sizing: border-box;
 }
+
+.el-tabs__nav-wrap{
+	/*width: 100%;*/
+}
+
+.el-tabs__nav-wrap::after{
+	/*height: 0px;*/
+}

@@ -1,11 +1,13 @@
 <template>
-<div class="app-wrapper-web" >
+
+  <transition enter-active-class="animated zoomIn" name="zoom">
+<!-- <div class="app-wrapper-web" > -->
   <div class="container-div" v-show="show">
     <div class="left-div">
-      <el-menu default-active="/MainWindow/Message" class="el-menu-vertical-do" :collapse="isCollapse" @select="selectMenu" unique-opened router>
+      <el-menu default-active="/MainWindow/ChatRoom" class="el-menu-vertical-do" :collapse="isCollapse" @select="selectMenu" unique-opened router>
         <el-menu-item index="/MainWindow/User" class="mb-15">
           <img src="../../src/assets/head.jpg">
-          <span slot="title">Silence</span>
+          <span slot="title">咕咕咕~</span>
         </el-menu-item>
         <el-menu-item index="/MainWindow/ChatRoom">
           <i class="iconfont icon-chat-room"></i>
@@ -46,20 +48,13 @@
       </el-menu>
     </div>
     <div class="main-div">
-      <router-view/>
-      <!-- <message v-if="select==1"></message> -->
-      <!-- <div style="width:100%;position: relative;">
-        <windowtitle></windowtitle>
-        <chat/>
-        <send/>
-      </div> -->
-      
+      <router-view/> 
     </div>
   </div>
-</div>
+<!-- </div> -->
+</transition>
 
 </template>
-
 
 <script>
 import store from "../store/index.js"
@@ -68,24 +63,30 @@ import message from "./CurrentMessage"
 import windowtitle from "./MainTitle"
 import chat from "./ChatView"
 import send from "./SendView"
+import {mapState} from 'vuex'
+import syncUser from '../utils/syncUser'
+import storage from '@/utils/storage'
+
 
 export default {
-  name: 'HelloWorld',
+  name: 'MainWindow',
   data () {
     return {
-      msg: 'Test',
+      msg: '',
       number:0,
       input:'',
       isCollapse:true,
       select:'1',
-      show:false
+      show:false,
+      webSocket:null
 
     }
   },
+  mixins:[syncUser],
   methods:{
 
     selectMenu(index,indexPath){
-      console.log(index)
+      //console.log(index)
       this.select=index
       if(index=='/MainWindow/Message' || index=="/MainWindow/Contact"){
         this.isCollapse=true
@@ -116,19 +117,103 @@ export default {
 
       console.log(this.$store.state.isLogin)
       console.log(this.$store.getters.isLogin)
-  $("a").fadeIn();
-  $("a").fadeIn("slow");
-  $("a").fadeIn(8000);
+
 
 
     },
 
+    linkSocket(){
+      //var user=this.$store.state.currentUser
+      var user=this.currentUser
+      //console.log(user)
+      var CreateWebSocket = (function () {
+        return function (urlValue) {
+            if (window.WebSocket) return new WebSocket(urlValue);
+            if (window.MozWebSocket) return new MozWebSocket(urlValue);
+            return false;
+        }
+      })()
+      // 实例化websoscket websocket有两种协议ws(不加密)和wss(加密)
+      //var webSocket = CreateWebSocket("ws://172.83.154.37:3001");
+      var webSocket = this.$store.state.ws
+
+      if(!webSocket){
+        webSocket= CreateWebSocket("ws://172.83.154.37:3001");
+        this.$store.dispatch('ws',webSocket)
+        console.log(" 置空了,socket重新连接了")
+      }else{
+        console.log("非空就不重新连接了")
+      }
+
+      webSocket.onopen = function (evt) {
+          // 一旦连接成功，就发送第一条数据
+           if(user){
+
+              var message={
+                from:user._id,
+                to:"000001",
+                msg:`1欢迎用户-${user.account}`,
+                type:'system'
+              }
+              webSocket.send(JSON.stringify(message))
+           }
+      }
+      // webSocket.onmessage = function (evt) {
+      //     // 这是服务端返回的数据
+      //     console.log("1111服务端说" + evt.data)
+      // }
+      // 关闭连接
+      webSocket.onclose = function (evt) {
+          //console.log("Connection closed.")
+      }
+
+
+
+      //this.$store.dispatch('ws',webSocket)
+
+      this.webSocket=webSocket
+     
+    },
+
+
+
+    closeLink(){
+      // window.onbeforeunload = event=> {
+      //   console.log("关闭WebSocket连接！");
+      //   alert("aa")
+      //   if(this.webSocket){
+      //     this.webSocket.close();
+      //   }
+        
+      // }
+
+      // window.addEventListener('beforeunload', e => {
+      //     if(this.webSocket){
+      //       this.webSocket.close();
+      //     }
+      // });
+    },
+
     
   },
+  beforeDestory(){
+    if(this.webSocket){
+          this.webSocket.close();
+    }
+    console.log("销毁之前调用")
+  },
+
+  created(){
+    this.linkSocket()
+    this.show=true
+      this.closeLink()
+  },
   mounted(){
-    console.log(this.$route.params.userName)
+    //this.linkSocket()
+    //console.log(this.$route.params.userName)
       //showTip()
-      this.show=true
+      //this.show=true
+      //this.closeLink()
   },
   components:{
     message,
@@ -138,8 +223,9 @@ export default {
   },
 
   computed:{
-    
+     
   }
+  
 }
 </script>
 
@@ -156,13 +242,11 @@ export default {
 .container-div{
   display: flex;
   position: absolute;
-  top: 5%;
- 
-  left: 7.5%;
+  top: 0;
+  bottom: 0;
+  left: 0;
   right: 0;
-  /*transform: scale(0.85,0.9);*/
-  width: 85%;
-  height: 90%;
+  transform: scale(0.85,0.9);
   box-shadow: -5px 5px 20px 0px rgba(0,0,0,0.1);
 }
 

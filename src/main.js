@@ -8,7 +8,7 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import  "./assets/css/common.css"
 import  "./assets/css/color.css"
-import  "./assets/css/elementDiy.css"
+import  "./assets/css/element-m.css"
 import axios from './api/http'
 // import axiosMethodOverride from 'axios-method-override'
 

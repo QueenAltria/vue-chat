@@ -1,8 +1,7 @@
-<!--  -->
+<!-- 登录 -->
 <template>
   <div class="login-div">
       <div class="login-main-div" v-loading="loading">
-
         <div class="back" :class="{back_active:canBack}" @click="prev">
           <i class="fa fa-arrow-circle-left"></i>
         </div>
@@ -11,7 +10,7 @@
           <el-carousel trigger="click" :autoplay="false" arrow="never" ref="carousel">
             <el-carousel-item>
               <div class="email"> 
-                <el-input class="input_name mt-20" placeholder="用户名" v-model="userName"/>
+                <el-input class="input_name mt-20" placeholder="用户名" v-model="userName" @keyup.enter.native="next" ref="accountInput"/>
                 <div class="button">
                   <el-button type="primary" class="mt-40" @click="next">下一步</el-button>
                 </div>
@@ -20,7 +19,7 @@
 
             <el-carousel-item>
                <div class="password">
-                 <el-input class="input_name mt-20" placeholder="密码" type="password"/>
+                 <el-input class="input_name mt-20" placeholder="密码" type="password" v-model="password" @keyup.enter.native="doLogin" ref="passInput"/>
                  <div class="button">
                   <el-button type="primary" class="mt-40" @click="doLogin">登录</el-button>
                 </div>
@@ -33,13 +32,16 @@
 </template>
 
 <script>
-import {getUser} from '../api/login'
+import {getUser} from '@/api/login'
+import store from "@/store/index.js"
+
 export default {
   data () {
     return {
-      canBack:false,
+      canBack:false,  //是否可以后退
       loading:false,
-      userName:''
+      userName:'',    //用户名
+      password:''     //密码
     };
   },
 
@@ -50,26 +52,53 @@ export default {
   mounted() {},
 
   methods: {
+    //下一步
     next(){
+      var that=this
       this.canBack=true
       this.$refs.carousel.next()
+      this.$refs.accountInput.blur()
+      setTimeout(function(){
+        that.$refs.passInput.focus()
+      },500)
     },
     prev(){
       if(!this.canBack) return
       this.canBack=false
       this.$refs.carousel.prev()
     },
+    //登录
     doLogin(){
-      //this.loading=true
-      getUser()
+      if(this.password==''){
+        this.$message({
+          showClose: true,
+          message: '密码不能为空！',
+          type: 'error'
+        });
+        return
+      }
+
+      this.loading=true
+      var params={
+        account:this.userName,
+        password:this.password
+      }
+      getUser(params)
         .then(({data})=>{
-          console.log(data)
-          this.$router.push({
-            name: 'MainWindow',
-            params: {
-              userName: this.userName
-            }
-          })
+          if(data.code==1){
+            this.loading=false
+            this.$message({
+              showClose: true,
+              message: '密码输入错误！',
+              type: 'error'
+            });
+
+          }else{
+            this.$store.dispatch("setUser",data)
+            this.$router.replace({
+              name: 'MainWindow'
+            })
+          }
         })
     }
   }

@@ -1,3 +1,3 @@
 import axios from 'axios'
 
-export const getUser=()=>axios.get("/users") //获取快递公司信息
+export const getUser=(data)=>axios.post("/users/doLogin",data) //登录获取用户信息

@@ -11,10 +11,10 @@ axios.defaults.baseURL = '/'
 // axios.defaults.baseURL = 'http://172.83.154.37:3000/'
 
 // http request 拦截器
-axios.interceptors.request.use(function (config) {
-return config
-}, function (err) {
-return Promise.reject(err)
+axios.interceptors.request.use(function(config) {
+  return config
+}, function(err) {
+  return Promise.reject(err)
 })
 
 // http response 拦截器
@@ -28,7 +28,6 @@ axios.interceptors.response.use(
         case 400:
           err.message = '请求错误'
           break
-
         case 401:
           err.message = '未授权，请登录'
 //           401 清除token信息并跳转到登录页面
