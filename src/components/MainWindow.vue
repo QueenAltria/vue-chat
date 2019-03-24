@@ -4,7 +4,7 @@
 <!-- <div class="app-wrapper-web" > -->
   <div class="container-div" v-show="show">
     <div class="left-div">
-      <el-menu default-active="/MainWindow/ChatRoom" class="el-menu-vertical-do" :collapse="isCollapse" @select="selectMenu" unique-opened router>
+      <el-menu :default-active="defaultActive" class="el-menu-vertical-do" :collapse="isCollapse" @select="selectMenu" unique-opened router>
         <el-menu-item index="/MainWindow/User" class="mb-15">
           <img src="../../src/assets/head.jpg">
           <span slot="title">咕咕咕~</span>
@@ -78,8 +78,8 @@ export default {
       isCollapse:true,
       select:'1',
       show:false,
-      webSocket:null
-
+      webSocket:null,
+      defaultActive:'/MainWindow/ChatRoom'
     }
   },
   mixins:[syncUser],
@@ -204,11 +204,13 @@ export default {
   },
 
   created(){
+    //console.log(this.$route.path)
     this.linkSocket()
     this.show=true
       this.closeLink()
   },
   mounted(){
+    this.defaultActive=this.$route.path
     //this.linkSocket()
     //console.log(this.$route.params.userName)
       //showTip()
@@ -241,12 +243,13 @@ export default {
 
 .container-div{
   display: flex;
-  position: absolute;
+  /* position: absolute; */
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
   transform: scale(0.85,0.9);
+ 
   box-shadow: -5px 5px 20px 0px rgba(0,0,0,0.1);
 }
 
@@ -259,6 +262,7 @@ export default {
 .left-div{
   background-color: white;
   box-sizing: border-box;
+  min-height: 100%;
 /*  height: 100%;
   overflow: auto;*/
 }
@@ -275,9 +279,9 @@ export default {
 }
 
 .setting{
-  position: absolute;;
+  /* position: absolute;;
   bottom: 0;
-  width: 100%;
+  width: 100%; */
 }
 
 /* .left-div::-webkit-scrollbar {

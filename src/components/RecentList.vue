@@ -11,7 +11,8 @@
 
 		<div class="scroll-recent">
 
-		<div v-for="(item,index) in messages" :class="{active:activeIndex==index}" class="msg-item" @click="activeIndex=index">
+		<div v-for="(item,index) in messages" :class="{active:activeIndex==index}" class="msg-item" 
+		@click="activeIndex=index" :key="index">
 			<img :src="item.avater">
 			<div>
 				<label>{{item.name}}</label>

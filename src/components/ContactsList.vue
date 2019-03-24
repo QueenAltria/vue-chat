@@ -14,7 +14,7 @@
 		<el-collapse v-model="activeNames" class="scroll-div">
 		  <el-collapse-item title="New friend 10/16" name="1">
 		    <div >
-		    	<div v-for="(item,index) in messages" :class="{active:activeIndex==index}" class="msg-item" @click="activeIndex=index">
+		    	<div v-for="(item,index) in messages" :class="{active:activeIndex==index}" class="msg-item" @click="activeIndex=index" :key="index">
 					<img :src="item.avater">
 					<div>
 						<label>{{item.name}}</label>

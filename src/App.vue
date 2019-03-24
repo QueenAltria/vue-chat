@@ -13,8 +13,6 @@ export default {
 <style>
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  /*font-family: 'Roboto', sans-serif;*/
-  /*font-family: 'PingFangSC-Regular', sans-serif;*/
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
@@ -24,6 +22,8 @@ body {
   /*cursor: url(./assets/huaji.png), auto;*/
   margin: 0;
   background-color: #F5F5F5;
+  width: 100%;
+  height: 100%;
 }
 
 a:hover {
@@ -31,7 +31,7 @@ a:hover {
 }
 
 .mark {
-  /*background-image: url(./assets/bg1.jpg);*/
+  /* background-image: url(./assets/bg1.jpg); */
   background: -webkit-linear-gradient(#fff 0%, #f2f7ff 100%);
   position: absolute;
   top: 0;

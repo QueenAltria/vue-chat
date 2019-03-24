@@ -1,9 +1,9 @@
 <template>
-	<div>
+	<div style="positon:relative;box-sizing: border-box;">
 		<div>
 			<el-row style="max-height: 300px;margin-left:10px;margin-right:10px;" :gutter="30">
 			  <el-col :span="8">
-			  	<img  class="info-img" src="http://172.83.154.37/images/20170902141742_TiAUm.thumb.700_0.jpeg">
+			  	<img  class="info-img" src="https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-751839.jpg">
 			  </el-col>
 			  <el-col :span="16">
 			  	<div class="mt-20">
@@ -27,9 +27,9 @@
 
 		
 			<div class="photo-container-div">
-			  <div v-for="(item,index) in srcArr" :key="index" :class="{tablayout_active:(index===active)}">
-			  		<img :src="item" class="photo-images">
-			  </div>
+				
+			  		<img :src="item" v-for="(item,index) in srcArr" :key="index"  class="photo-images">
+				
 			 </div>
 			
 		
@@ -47,43 +47,18 @@ export default {
     	activeName:'first',
     	arr:["Photos","Videos","Daily"],
     	active:0,
-    	srcArr:["https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-567795.jpg",
+    	srcArr:["http://172.83.154.37/images/20170902141742_TiAUm.thumb.700_0.jpeg",
+				"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-567795.jpg",
     			"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-751323.jpg",
     			"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-755263.png",
-    			"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-146170.jpg"]
+				"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-146170.jpg",
+				"https://wallpapers.wallhaven.cc/wallpapers/full/wallhaven-751540.jpg"]
     };
   },
 };
 </script>
 
 <style lang="css" scoped>
-.tablayout{
-	margin-top: 4em;
-	font-size: 0.9em;
-	font-weight: 500;
-	color: #838383;
-}
-
-.tablayout_active{
-	font-size: 1em;
-	color: #333333;
-}
-
-.photo-images{
-	height: 100%;
-	width: 300px;
-	border-radius: 4px;
-	margin-right: 20px;
-}
-
-.photo-container-div{
-	display: flex;
-	width: 100px;
-	min-width: 100%;
-	overflow-x: auto;
-	overflow-y: hidden;
-}
-
 .info-left{
 	margin: 20px;
 }
@@ -104,4 +79,54 @@ export default {
 	font-weight: 500;
 	font-size: 12px;
 }
+
+.tablayout{
+	margin-top: 3em;
+	font-size: 0.9em;
+	font-weight: 500;
+	color: #838383;
+}
+
+.tablayout_active{
+	font-size: 1em;
+	color: #333333;
+}
+
+.photo-container-div{
+	display: flex;
+	width: 100px;
+	min-width: 100%;
+	height: 25%;
+	overflow-x: auto;
+	overflow-y: hidden;
+	position: absolute;
+	padding-bottom: 20px;
+	margin: 20px 0;
+
+	box-sizing: border-box;
+}
+
+.photo-images{
+	height: 100%;
+	border-radius: 10px;
+	margin:0 20px;
+}
+
+
+::-webkit-scrollbar{
+	background: transparent;
+	height: 6px;
+	width: 40px;
+}
+
+::-webkit-scrollbar-thumb{
+	border-radius: 10px;
+	box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+	background-color: rgba(144,147,153,.3);
+}
+
+::-webkit-scrollbar-track { 
+    background: transparent;
+}
+
 </style>

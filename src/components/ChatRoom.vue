@@ -1,6 +1,7 @@
 <template>
-	<div>
-		<div v-for="(item,index) in arr"   >{{item}}</div>
+	<div class="full-w">
+    <windowTitle :titleType="'chatroom'"/>
+		<div v-for="(item,index) in arr"  :key="index">{{item}}</div>
 
 		<el-input class=""  v-model="message" />
 		<el-button @click="send">发送</el-button>
@@ -10,6 +11,7 @@
 
 <script>
 import store from "../store/index.js"
+import windowTitle from '@/components/MainTitle';
 export default {
 
   name: 'ChatRoom',
@@ -19,6 +21,9 @@ export default {
     	message:'',
     	arr:[],
     };
+  },
+  components:{
+    windowTitle
   },
 
   methods:{
