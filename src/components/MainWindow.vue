@@ -248,8 +248,10 @@ export default {
   bottom: 0;
   left: 0;
   right: 0;
-  transform: scale(0.85,0.9);
  
+  min-height: 100%;
+  /*transform: scale(0.9,0.9);*/
+  
   box-shadow: -5px 5px 20px 0px rgba(0,0,0,0.1);
 }
 

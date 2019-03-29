@@ -1,4 +1,5 @@
 <template>
+
 	<div class="msg-list-div">
 		<div style="padding:0 20px;">
 		<h4 class="margin-0">Current Message</h4>
@@ -9,7 +10,7 @@
 		</div>
 		</div>
 
-		<div class="scroll-recent">
+		<el-scrollbar class="scroll-recent">
 
 		<div v-for="(item,index) in messages" :class="{active:activeIndex==index}" class="msg-item" 
 		@click="activeIndex=index" :key="index">
@@ -21,8 +22,9 @@
 			<i class="iconfont icon-friend color-green" v-if="index==1"></i>
 		</div>
 
-		</div>
-	</div>
+		</el-scrollbar>
+	</div>	
+
 </template>
 
 <script>
@@ -74,6 +76,8 @@ export default {
   mounted(){
   	let a=this.messages
   	this.messages=[...a,...a]
+  	let b=this.messages
+  	this.messages=[...b,...b]
   }
 };
 </script>
@@ -83,10 +87,13 @@ export default {
 	padding: 10px 0;
 	background: #FBFBFB;
 	width: 250px;
-	height: 100%;
+	/*height: 100%;*/
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: column;
+	height: 600px;
+	/*overflow-y: auto;*/
+
 }
 
 .small-text{
@@ -133,6 +140,7 @@ export default {
 .scroll-recent{
 	flex: 1;
 	overflow-y: auto;
+	overflow-x:hidden;
 }
 
 </style>

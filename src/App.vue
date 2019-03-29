@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="mark" />
+    <!-- <div class="mark-fixed" /> -->
     <router-view />
   </div>
 </template>
@@ -15,34 +15,50 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
+  color: #333333;
+  height: 100%;
+}
+
+html{
+  height:100%;   
+  width:100%; 
 }
 
 body {
   /*cursor: url(./assets/huaji.png), auto;*/
   margin: 0;
-  background-color: #F5F5F5;
-  width: 100%;
-  height: 100%;
+  font-weight:500;
+  height:100%;   
+  width:100%;   
+  background: -webkit-linear-gradient(#fff 0%, #f2f7ff 100%);  
+  /*background-image: url(./assets/bg1.jpg); */
+  background-position: center 0;   
+  background-repeat: no-repeat;   
+  background-attachment:fixed;   
+  background-size: cover;    
+  zoom: 1;
+  z-index: 1;  
 }
 
 a:hover {
   cursor: url(./assets/yinxian.png), auto;
 }
 
-.mark {
-  /* background-image: url(./assets/bg1.jpg); */
-  background: -webkit-linear-gradient(#fff 0%, #f2f7ff 100%);
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: -1;
-  background-size: cover;
-  background-position: center;
-  opacity: 1;
-  filter: blur(0px);
+ 
+/*背景图尺寸不随浏览器缩放而变化 center 0*/
+.mark-fixed{
+  position:absolute;   
+  top:0;   
+  left:0;   
+  height:100%;   
+  width:100%;   
+  background: -webkit-linear-gradient(#fff 0%, #f2f7ff 100%);   
+  background-position: center 0;   
+  background-repeat: no-repeat;   
+  background-attachment:fixed;   
+  background-size: cover;    
+  zoom: 1;
+  z-index: 1;   
 }
 
 </style>

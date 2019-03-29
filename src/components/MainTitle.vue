@@ -1,7 +1,7 @@
 <template>
   <div class="title-div">
     <h5 class="margin-0">{{showTitle}}</h5>
-    <div v-if="titleType=='user'">
+    <div v-if="titleType=='contacts'">
       <i class="iconfont icon-heart"></i>
       <i class="iconfont icon-phone"></i>
       <i class="iconfont icon-person-collection"></i>
@@ -23,14 +23,15 @@ export default {
   props: {
     titleType: {
       type: String,
-      default: "user"
+      default: "user",
+      feriendName:''
     }
   },
   computed: {
     showTitle: function() {
       switch (this.titleType) {
         case "user":
-          return "Alice";
+          return "咕咕咕~";
         case "document":
           return "文件";
         case "upcoming":
@@ -44,9 +45,11 @@ export default {
         case "setting":
           return "设置";
         case "chatroom":
-		  return "聊天室";
-		default:
-		  return this.titleType
+		      return "聊天室";
+        case "contacts":
+          return this.feriendName
+		    default:
+		      return this.titleType
       }
     }
   }

@@ -1,6 +1,12 @@
 <template>
 	<div class="cm-div">
-		<recent></recent>
+		
+    
+      <recent></recent>
+
+    
+            
+  
       	<div style="position: relative;flex:1">
         	<windowtitle></windowtitle>
         	<chat/>
@@ -33,11 +39,17 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="css">
 .cm-div{
   background-color: #F8F8F8;
   width: 100%;
   display: flex;
+}
+aside{
+  flex: none;
+  width: 250px;
+  overflow-y: auto;
+  display: block;
 }
 
 </style>

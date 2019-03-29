@@ -5,3 +5,35 @@
 .color-green{
 	color: #26dda4;
 }
+
+.color-blue-bg{
+	background-color: #5b95ff;
+}
+
+.color-blue-alpha-bg{
+	background-color: #bcd5ff;
+}
+
+.color-green-bg{
+	background-color: #26dda4;
+}
+
+.color-green-alpha-bg{
+	background-color: #a8f1db;
+}
+
+.color-orange-bg{
+	background-color: #ffcb5b;
+}
+
+.color-orange-alpha-bg{
+	background-color: #ffeabd;
+}
+
+.color-red-bg{
+	background-color: #ff7f7b;
+}
+
+.color-red-alpha-bg{
+	background-color: #ffccca;
+}

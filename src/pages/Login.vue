@@ -7,7 +7,7 @@
         </div>
         <h3>Enter your credentials</h3>
         <div class="block">
-          <el-carousel trigger="click" :autoplay="false" arrow="never" ref="carousel">
+          <el-carousel trigger="click" :autoplay="false" arrow="never" ref="carousel" :loop="false">
             <el-carousel-item>
               <div class="email"> 
                 <el-input class="input_name mt-20" placeholder="用户名" v-model="userName" @keyup.enter.native="next" ref="accountInput"/>
@@ -165,14 +165,15 @@ h3{
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: 100%;
-  position: absolute;
+ 
+  /*position: absolute;*/
 }
 
 .login-main-div{
+  z-index: 2;
   width: 400px;
-  height: 50%;
+ 
   background-color: white;
   box-shadow: 0px 5px 80px 0px #e4e8f0;
   border-radius: 5px;
@@ -181,4 +182,5 @@ h3{
 .login-main-div:hover{
   transform: scale(1.05);
 }
+
 </style>
