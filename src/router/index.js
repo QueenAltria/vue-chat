@@ -13,16 +13,54 @@ import Statistics from '@/components/Statistics'
 import Setting from '@/components/Setting'
 import User from '@/components/User'
 import ChatRoom from '@/components/ChatRoom'
+import Comic from '@/pages/Comic'
+import Recommend from '@/pages/Recommend'
+import Recent from '@/pages/Recent'
+import Ranking from '@/pages/Ranking'
+import Category from '@/pages/Category'
+import History from '@/pages/History'
 import storage from '@/utils/storage'
 
 Vue.use(Router)
 
 const router = new Router({
   routes: [
+  	{
+	  path: '/Comic',
+      redirect:'/Comic/Recommend',
+  	},
 	{
 	  path: '/',
-      name: 'Login',
-      component: Login,
+      name: 'Comic',
+      redirect:'/Comic/Recommend',
+      component: Comic,
+      children:[
+      	{
+      	  path: '/Comic/Recommend',
+	      name: 'Recommend',
+	      component: Recommend
+      	},
+      	{
+      	  path: '/Comic/Recent',
+	      name: '/Comic/Recent',
+	      component: Recent
+      	},
+      	{
+      	  path: '/Comic/Ranking',
+	      name: '/Comic/Ranking',
+	      component: Ranking
+      	},
+      	{
+      	  path: '/Comic/Category',
+	      name: '/Comic/Category',
+	      component: Category
+      	},
+      	{
+      	  path: '/Comic/History',
+	      name: '/Comic/History',
+	      component: History
+      	},
+      ]
 	},
     {
       path: '/MainWindow',
@@ -87,25 +125,26 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
 	var user=storage.fetch().currentUser
-	if(to.name=='Login'){
-		//console.log(store)
-		//已经登录
-		if(user){
-			next({
-				path:'/MainWindow/ChatRoom'
-			})
-		}else{
-			next()
-		}
-	}else{
-		if(!user){
-			next({
-				path:'/'
-			})
-		}else{
-			next()
-		}
-	}
+	next()
+	// if(to.name=='Login'){
+	// 	//console.log(store)
+	// 	//已经登录
+	// 	if(user){
+	// 		next({
+	// 			path:'/MainWindow/ChatRoom'
+	// 		})
+	// 	}else{
+	// 		next()
+	// 	}
+	// }else{
+	// 	if(!user){
+	// 		next({
+	// 			path:'/'
+	// 		})
+	// 	}else{
+	// 		next()
+	// 	}
+	// }
 })
 
 export default router
