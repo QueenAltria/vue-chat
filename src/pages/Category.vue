@@ -5,15 +5,23 @@
 </template>
 
 <script>
+import {getCategory} from '@/api/login'
 export default {
 
   name: 'Category',
 
   data() {
     return {
-
+      
     };
   },
+
+  created(){
+    getCategory()
+      .then(res=>{
+        console.log(res)
+      })
+  }
 };
 </script>
 

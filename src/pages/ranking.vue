@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import {getRank} from '@/api/login'
 export default {
 
   name: 'Ranking',
@@ -13,6 +14,13 @@ export default {
     return {
 
     };
+  },
+
+  mounted(){
+    getRank()
+      .then(res=>{
+        
+      })
   },
 };
 </script>
