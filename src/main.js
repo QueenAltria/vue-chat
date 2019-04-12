@@ -16,11 +16,15 @@ if (false) {
     console = console || {};
     console.log = function(){};
 }
+
 Vue.prototype.$http = axios
-
 Vue.config.productionTip = false
-
 Vue.use(ElementUI);
+
+const requireAll = requireContext => requireContext.keys().map(requireContext)
+const req = require.context('./assets/svg', true, /\.svg$/);
+requireAll(req)
+
 
 /* eslint-disable no-new */
 new Vue({

@@ -45,6 +45,11 @@ module.exports = {
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
+        // include => 只处理指定的文件夹下的文件
+        // exclude => 不处理指定的文件夹下的文件
+        exclude: [
+          path.resolve(__dirname, '../src/assets/svg'),
+        ],
         options: {
           limit: 10000,
           name: utils.assetsPath('img/[name].[hash:7].[ext]')
@@ -65,6 +70,16 @@ module.exports = {
           limit: 10000,
           name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
         }
+      },
+      {
+        test: /\.svg$/,
+        include: [
+          path.resolve(__dirname, '../src/assets/svg'),
+        ],
+        loader: 'svg-sprite-loader',
+        // options: {
+        //   symbolId: 'icon-[name]'
+        // }
       }
     ]
   },

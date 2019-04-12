@@ -1,9 +1,18 @@
 <template>
 	<div>
+    <div class="top-fixed-div">
 		<navigation></navigation>
-    <tab :defaultActive="defaultActive" ref="tabbar"></tab>
+    <!-- <tab :defaultActive="defaultActive" ref="tabbar"></tab> -->
+
+    </div>
+
+     <bottom class="bottom-navigation" :defaultActive="defaultActive" ref="tabbar"/>
+
+
     <div class="content">
-      <router-view />
+      <keep-alive>
+        <router-view keep-alive/>
+      </keep-alive>
     </div>
 	</div>
 </template>
@@ -11,6 +20,7 @@
 <script>
 import axios from 'axios'
 import navigation from '@/components/Navigation'
+import bottom from '@/components/BottomNavigation'
 import tab from '@/components/TabNav'
 export default {
 
@@ -46,19 +56,42 @@ export default {
 
   components:{
     navigation,
-    tab
-  }
+    tab,
+    bottom
+  },
+
+    beforeRouteLeave (to, from , next) {
+      console.log(to)
+    },
+
+
 };
 </script>
 
 <style lang="css" scoped>
+.top-fixed-div{
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+
 .content{
-  background: #FAFAFA;
+  background: #F1F1F1;
   flex: 1;
   position: absolute;
-  top: 96px;
+  top: 50px;
   bottom: 0;
   left: 0;
   right: 0;
+  bottom: 52px;
+  overflow-y: scroll;
+  /*padding-top: 50px;
+  padding-bottom: 56px;*/
+}
+
+.bottom-navigation{
+  position: fixed;
+  bottom: 0;
 }
 </style>

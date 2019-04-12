@@ -2,10 +2,11 @@
 	<div class="tab-div">
 		<div v-for="(item,index) in tabItem" 
 			class="tab-normal" 
-			:class="{'tab-active':activeIndex==item.path}"
-			@click="toggle(item.path)">{{item.title}}
+			:class="{'tab-active':activeIndex==index}"
+			@click="toggle(index)">{{item.title}}
 		</div>
 	</div>
+	<!-- <slot name="day" class="tab-slot"></slot> -->
 </template>
 
 <script>
@@ -16,22 +17,16 @@ export default {
   data() {
     return {
     	tabItem:[{
-    		title:"推荐",
+    		title:"日排行",
     		path:'/Comic/Recommend'
     	},{
-    		title:'最近',
+    		title:'月排行',
     		path:'/Comic/Recent'
     	},{
-    		title:'排行',
+    		title:'总排行',
     		path:'/Comic/Ranking'
-    	},{
-    		title:'分类',
-    		path:'/Comic/Category'
-    	},{
-    		title:'记录',
-    		path:'/Comic/History'
     	}],
-    	activeIndex:'/Comic/Recommend',
+    	activeIndex:0,
     };
   },
 
@@ -43,19 +38,19 @@ export default {
    },
 
    mounted(){
-   		console.log(this.activeIndex)
-   		console.log(this.defaultActive)
-   		this.activeIndex=this.defaultActive
+ 
+   		// this.activeIndex=this.defaultActive
    },
 
   methods:{
   	toggle(index){
   		this.activeIndex=index
-  		this.$router.push({path: index})
+  		this.$emit("toggleList",this.activeIndex)
+  		// this.$router.push({path: index})
   	},
 
   	resetIndex(path){
-  		this.activeIndex=path
+  		// this.activeIndex=path
   	}
   }
 };
@@ -65,6 +60,11 @@ export default {
 .tab-div{
 	display: flex;
 	align-items: center;
+	background-color: white;
+	position: fixed;
+	width: 100%;
+	z-index: 899;
+	/*background-color: white;*/
 }
 .tab-normal{
 	flex: 1;
@@ -94,5 +94,9 @@ export default {
     height: 2px;
     width: 15px;
     background-color: #32b66b;
+}
+
+.tab-slot{
+	margin-top: 44px;
 }
 </style>

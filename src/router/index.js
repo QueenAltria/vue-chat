@@ -13,12 +13,14 @@ import Statistics from '@/components/Statistics'
 import Setting from '@/components/Setting'
 import User from '@/components/User'
 import ChatRoom from '@/components/ChatRoom'
-import Comic from '@/pages/Comic'
-import Recommend from '@/pages/Recommend'
-import Recent from '@/pages/Recent'
-import Ranking from '@/pages/Ranking'
-import Category from '@/pages/Category'
-import History from '@/pages/History'
+
+import Comic from '@/pages/comic/Comic'
+import Recommend from '@/pages/comic/Recommend'
+import Recent from '@/pages/comic/Recent'
+import Ranking from '@/pages/comic/Ranking'
+import Category from '@/pages/comic/Category'
+import History from '@/pages/comic/History'
+
 import storage from '@/utils/storage'
 
 Vue.use(Router)
