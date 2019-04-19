@@ -1,7 +1,18 @@
 <template>
   <div id="app">
     <!-- <div class="mark-fixed" /> -->
-    <router-view />
+    
+    <!-- <keep-alive inclucde="Comic"> 
+      <router-view />
+    </keep-alive> -->
+
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive">
+    </router-view>
+    </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive">
+    </router-view>
+   
   </div>
 </template>
 <script>
@@ -17,6 +28,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #333333;
   height: 100%;
+  width:100%; 
 }
 
 html{
@@ -30,7 +42,8 @@ body {
   font-weight:500;
   height:100%;   
   width:100%;   
-  background: -webkit-linear-gradient(#fff 0%, #f2f7ff 100%);  
+  /*background: -webkit-linear-gradient(#fff 0%, #f2f7ff 100%);  */
+  background-color: #F1F1F1;
   /*background-image: url(./assets/bg1.jpg); */
   background-position: center 0;   
   background-repeat: no-repeat;   
@@ -62,3 +75,4 @@ a:hover {
 }
 
 </style>
+

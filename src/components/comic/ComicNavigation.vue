@@ -1,17 +1,18 @@
 <template>
 	<div class="navigation-div">
 		<i class="iconfont icon-back header-left" @click="back"></i>
-		<div class="title">首页</div>
+		<div class="title">{{title}}</div>
 		<div class="header-right">
-			<i class="iconfont icon-search header-right-icon" @click="search"></i>
+			
 		</div>
 	</div>
 </template>
 
 <script>
+
 export default {
 
-  name: 'Navigation',
+  name: 'ComicNavigation',
 
   data() {
     return {
@@ -24,11 +25,15 @@ export default {
   	back(){
   		this.$router.back(-1);
   	},
-  	//搜索
-  	search(){
-  		this.$router.push({path:'/Comic/Search'})
-  	}
   },
+
+  props: {
+    title: {
+      type: String,
+      default: "首页"
+    }
+  },
+
 };
 </script>
 

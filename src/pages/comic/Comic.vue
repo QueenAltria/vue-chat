@@ -1,5 +1,8 @@
-<template>
+<!-- 夸克浏览器因底部工具栏在底部切换时存在bug -->
+<template keep-alive>
+      
   <div>
+
     <div class="top-fixed-div">
       <navigation></navigation>
     </div>
@@ -9,7 +12,9 @@
         <router-view keep-alive />
       </keep-alive>
     </div>
+
   </div>
+    
 </template>
 
 <script>
@@ -42,7 +47,7 @@ export default {
   },
 
   mounted() {
-    this.getData()
+    //this.getData()
     this.defaultActive = this.$route.path
     this.$refs.tabbar.resetIndex(this.$route.path)
     //console.log(this.$route.path)
@@ -66,15 +71,17 @@ export default {
 .content {
   background: #F1F1F1;
   flex: 1;
-  position: absolute;
+/*  position: absolute;
   top: 50px;
   bottom: 0;
   left: 0;
   right: 0;
   bottom: 52px;
-  overflow-y: scroll;
-  /*padding-top: 50px;
-  padding-bottom: 56px;*/
+  overflow-y: scroll;*/
+  padding-top: 50px;
+  margin-bottom: 52px;
+  min-height: 100%;
+  /*overflow-y: scroll;*/
 }
 
 .bottom-navigation {

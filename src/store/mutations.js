@@ -36,4 +36,12 @@ const userToken=(state,token)=>{
 	}
 }
 
-export {userStatus,userToken,commitws}
+const setComic=(state,comic)=>{
+	if(token){
+		state.currentComic=comic
+	}else{
+		state.currentComic={}
+	}
+}
+
+export {userStatus,userToken,commitws,setComic}

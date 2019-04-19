@@ -14,56 +14,109 @@ import Setting from '@/components/Setting'
 import User from '@/components/User'
 import ChatRoom from '@/components/ChatRoom'
 
+
 import Comic from '@/pages/comic/Comic'
 import Recommend from '@/pages/comic/Recommend'
 import Recent from '@/pages/comic/Recent'
 import Ranking from '@/pages/comic/Ranking'
 import Category from '@/pages/comic/Category'
 import History from '@/pages/comic/History'
+import Search from '@/pages/comic/Search'
+import ComicDetails from "@/pages/comic/ComicDetails"
+import ComicShow from "@/pages/comic/ComicShow"
 
 import storage from '@/utils/storage'
 
 Vue.use(Router)
 
 const router = new Router({
+  mode: 'hash',
   routes: [
   	{
 	  path: '/Comic',
       redirect:'/Comic/Recommend',
+       meta: {
+      	keepAlive: true
+      },
   	},
 	{
 	  path: '/',
       name: 'Comic',
       redirect:'/Comic/Recommend',
       component: Comic,
+      meta: {
+      	keepAlive: true
+      },
       children:[
       	{
       	  path: '/Comic/Recommend',
 	      name: 'Recommend',
-	      component: Recommend
+	      component: Recommend,
+	      meta: {
+      	keepAlive: true
+      },
       	},
       	{
       	  path: '/Comic/Recent',
 	      name: '/Comic/Recent',
-	      component: Recent
+	      component: Recent,
+	      meta: {
+      	keepAlive: true
+      },
       	},
       	{
       	  path: '/Comic/Ranking',
 	      name: '/Comic/Ranking',
-	      component: Ranking
+	      component: Ranking,
+	      meta: {
+      	keepAlive: true
+      },
       	},
       	{
       	  path: '/Comic/Category',
 	      name: '/Comic/Category',
-	      component: Category
+	      component: Category,
+	      meta: {
+      	keepAlive: true
+      },
       	},
       	{
       	  path: '/Comic/History',
 	      name: '/Comic/History',
-	      component: History
+	      component: History,
+	      meta: {
+      	keepAlive: true
+      },
       	},
       ]
 	},
+	{
+  	  path: '/Comic/Search',
+      name: '/Comic/Search',
+      component: Search,
+      meta: {
+      	keepAlive: false
+      },
+    },
+    {
+  	  path: '/Comic/ComicDetails/:item',
+      name: '/Comic/ComicDetails',
+      component: ComicDetails,
+      meta: {
+      	keepAlive: false
+      },
+      children:[
+      	{
+	  	  path: '/Comic/ComicShow/:href',
+	      name: '/Comic/ComicShow',
+	      component: ComicShow,
+	      meta: {
+	      	keepAlive: false
+	      },
+	    },
+      ]
+    },
+    
     {
       path: '/MainWindow',
       name: 'MainWindow',

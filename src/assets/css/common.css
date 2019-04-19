@@ -1,11 +1,4 @@
-.text-popup {
-    animation: textPopup 1s;
-    color: red;
-    user-select: none;
-    white-space: nowrap;
-    position: absolute;
-    z-index: 99;
-}
+/*富强 动画*/
 @keyframes textPopup {
     0%, 100% {
         opacity: 0;
@@ -17,7 +10,48 @@
         transform: translateY(-50px);    
     }
 }
+.text-popup {
+    animation: textPopup 1s;
+    color: red;
+    user-select: none;
+    white-space: nowrap;
+    position: absolute;
+    z-index: 99;
+}
 
+
+/*加载动画*/
+@-webkit-keyframes rotation {
+  from {
+    -webkit-transform: rotate(0deg);
+  }
+
+  to {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+.svg-circle {
+  width: 40px;
+  height: 40px;
+  animation: rotation 1.0s linear infinite;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.text-center{
+	text-align: center;
+}
+
+.line-one{
+	overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
 .iconfont{
     font-size:22px;
 }
@@ -44,6 +78,9 @@
 }
 .mt-10{
 	margin-top: 10px;
+}
+.mt-16{
+	margin-top: 16px;
 }
 .margin-0{
 	margin: 0;

@@ -26,7 +26,7 @@ export default {
         icon: 'icon-paihang',
         path: '/Comic/Ranking'
       }, {
-        title: '分类',
+        title: '全部',
         icon: 'icon-fenlei',
         path: '/Comic/Category'
       }, {
@@ -55,10 +55,25 @@ export default {
     toggle(index) {
       this.activeIndex = index
       this.$router.push({ path: index })
+      //this.goTop()
+
     },
     //刷新页面重置选择
     resetIndex(path) {
       this.activeIndex = path
+    },
+
+    goTop () {
+      this.timer = setInterval(() => {
+        let osTop = document.documentElement.scrollTop || document.body.scrollTop
+        //console.log(osTop)
+        let ispeed = Math.floor(-osTop / 5)
+        document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed
+        this.isTop = true
+        if (osTop === 0) {
+          clearInterval(this.timer)
+        }
+      }, 30)
     }
   },
 
@@ -80,6 +95,7 @@ export default {
   font-size: 0.8em;
   background: white;
   width: 100%;
+  z-index: 999;
 }
 
 .bottom-tab-normal {

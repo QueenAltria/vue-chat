@@ -6,30 +6,36 @@
     </svg>
     <div class="rank-parent">
       <div class="rank-list" v-show="tabIndex==0">
-        <div v-for="(item,index) in rankDataDay" :key="index" class="rank-item">
+        <div v-for="(item,index) in rankDataDay" :key="index" class="rank-item" @click="goDetail(item)">
           <!-- :onerror="loadError" -->
           <img :src="item.cover" class="cover-img" @error.once="dosomething($event)">
           <div class="comic-introduction">
             <span class="rank-title">{{item.title}}</span>
-            <div>{{item.state}} | </div>
+            <div class="rank-item-state">{{item.state}} | {{item.author}}</div>
+            <div class="rank-item-state">最新更新：{{item.chapter}} | {{item.time}}</div>
+            <div class="rank-item-state">观看人数：{{item.score}}</div>
           </div>
         </div>
       </div>
       <div class="rank-list" v-show="tabIndex==1">
-        <div v-for="(item,index) in rankDataMonth" :key="index" class="rank-item">
+        <div v-for="(item,index) in rankDataMonth" :key="index" class="rank-item" @click="goDetail(item)">
           <img :src="item.cover" class="cover-img" @error.once="dosomething($event)">
           <div class="comic-introduction">
             <span class="rank-title">{{item.title}}</span>
-            <div>{{item.state}} | </div>
+            <div class="rank-item-state">{{item.state}} | {{item.author}}</div>
+            <div class="rank-item-state">最新更新：{{item.chapter}} | {{item.time}}</div>
+            <div class="rank-item-state">观看人数：{{item.score}}</div>
           </div>
         </div>
       </div>
       <div class="rank-list" v-show="tabIndex==2">
-        <div v-for="(item,index) in rankDataAll" :key="index" class="rank-item">
+        <div v-for="(item,index) in rankDataAll" :key="index" class="rank-item" @click="goDetail(item)">
           <img :src="item.cover" class="cover-img" @error.once="dosomething($event)">
           <div class="comic-introduction">
             <span class="rank-title">{{item.title}}</span>
-            <div>{{item.state}} | </div>
+            <div class="rank-item-state">{{item.state}} | {{item.author}}</div>
+            <div class="rank-item-state">最新更新：{{item.chapter}} | {{item.time}}</div>
+            <div class="rank-item-state">观看人数：{{item.score}}</div>
           </div>
         </div>
       </div>
@@ -40,6 +46,7 @@
 import { getRank } from '@/api/login'
 import defaultCover from '@/assets/head.jpg'
 import tab from '@/components/comic/TabNav'
+import {common} from '@/utils/comicMixins'
 
 export default {
 
@@ -68,6 +75,8 @@ export default {
     tab,
   },
 
+  mixins:[common],
+
   methods: {
     _initData(index=0) {
       if (index == 0) {
@@ -93,7 +102,7 @@ export default {
             this.loading = false
           })
       }else if (index == 2) {
-        this.params.date = 'month'
+        this.params.date = 'all'
         if (this.rankDataAll.length != 0) {
           return
         }
@@ -125,7 +134,7 @@ export default {
     goTop () {
       this.timer = setInterval(() => {
         let osTop = document.documentElement.scrollTop || document.body.scrollTop
-        console.log(osTop)
+        //console.log(osTop)
         let ispeed = Math.floor(-osTop / 5)
         document.documentElement.scrollTop = document.body.scrollTop = osTop + ispeed
         this.isTop = true
@@ -143,6 +152,7 @@ export default {
   position: relative;
   top: 54px;
   overflow-x: hidden;
+  padding-bottom: 52px;
 }
 
 .rank-list {
@@ -157,6 +167,10 @@ export default {
   display: flex;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
   border-radius: 2px;
+}
+
+.rank-item:active{
+ background: #F1F1F1;
 }
 
 .comic-introduction {
@@ -174,27 +188,14 @@ export default {
   object-fit: cover;
 }
 
-@-webkit-keyframes rotation {
-  from {
-    -webkit-transform: rotate(0deg);
-  }
-
-  to {
-    -webkit-transform: rotate(360deg);
-  }
+.rank-item-state{
+  color: #777;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
 }
 
-.svg-circle {
-  width: 40px;
-  height: 40px;
-  animation: rotation 1.0s linear infinite;
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
 
 .rank-list-month {
   transform: translate3d(100%, 0, 0);

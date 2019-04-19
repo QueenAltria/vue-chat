@@ -18,6 +18,8 @@ const store=new vuex.Store({
 		currentUser:null,
 		isLogin:false,
 		ws:null,
+
+		currentComic:{}  //存在local里存在问题：开启多个标签页，会覆盖local
 	},
 	mutations,
 	getters,
